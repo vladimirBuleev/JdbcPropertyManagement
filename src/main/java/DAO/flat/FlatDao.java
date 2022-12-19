@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class FlatDao implements Dao {
+public class FlatDao implements Dao<Flat> {
     private List<Flat> flats = new ArrayList<>();
     private final JdbcTemplate jdbcTemplate;
 
@@ -33,12 +33,14 @@ public class FlatDao implements Dao {
         jdbcTemplate.update("delete from flat where id=?", id);
     }
 
+    @Override
     public void add(Flat flat) {
         jdbcTemplate.update("insert into flat(city,street,housenum,floor,apnum,aparea,rentprice,status) values (?,?,?,?,?,?,?,?)",
                 flat.getCity(), flat.getStreet(), flat.getHouseNum(), flat.getFloor(),
                 flat.getApNum(), flat.getApArea(), flat.getRentPrice(), flat.getStatus());
     }
 
+    @Override
     public void update(int id, Flat newFlat) {
         jdbcTemplate.update("update flat set city=?,street=?,housenum=?,floor=?,apnum=?,aparea=?,rentprice=?,status=? where id=?",
                 newFlat.getCity(), newFlat.getStreet(), newFlat.getHouseNum(), newFlat.getFloor(), newFlat.getApNum(),

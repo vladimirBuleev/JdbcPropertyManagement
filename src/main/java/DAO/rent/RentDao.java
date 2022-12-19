@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-public class RentDao implements Dao {
+public class RentDao implements Dao<Rent> {
     private final JdbcTemplate jdbcTemplate;
     private List<Rent> rents = new ArrayList<>();
 
@@ -42,13 +42,18 @@ public class RentDao implements Dao {
         jdbcTemplate.update("delete from rent where id=?", id);
     }
 
+    @Override
     public void add(Rent rent) {
         jdbcTemplate.update("insert into rent(clientId,flatId,startDate,endDate,paymentDate,sum) values (?,?,?,?,?,?)",
                 rent.getClientId(), rent.getFlatId(), rent.getStartDate(), rent.getEndDate(), rent.getPaymentDate(), rent.getSum());
+
     }
 
+    @Override
     public void update(int id, Rent rent) {
         jdbcTemplate.update("update rent set clientId=?,flatId=?,startDate=?,endDate=?,paymentDate=?,sum = ? where id =?",
                 rent.getClientId(), rent.getFlatId(), rent.getStartDate(), rent.getEndDate(), rent.getPaymentDate(), rent.getSum(), id);
+
     }
+
 }
