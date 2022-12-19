@@ -1,4 +1,4 @@
-package data.rent;
+package DAO.rent;
 
 import org.springframework.jdbc.core.RowMapper;
 
@@ -12,9 +12,9 @@ public class RentRowMapper implements RowMapper<Rent> {
                 rs.getInt("id"),
                 rs.getInt("clientId"),
                 rs.getInt("flatId"),
-                rs.getString("startDate"),
-                rs.getString("endDate"),
-                rs.getString("paymentDate"),
+                rs.getDate("startDate"),
+                rs.getDate("endDate"),
+                rs.getDate("paymentDate"),
                 rs.getDouble("sum")
         );
     }

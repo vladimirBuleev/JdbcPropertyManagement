@@ -1,4 +1,4 @@
-package data.client;
+package DAO.client;
 
 import org.springframework.jdbc.core.RowMapper;
 

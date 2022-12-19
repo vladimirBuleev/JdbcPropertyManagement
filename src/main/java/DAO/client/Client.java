@@ -1,4 +1,4 @@
-package data.client;
+package DAO.client;
 
 public class Client {
     private Integer id;

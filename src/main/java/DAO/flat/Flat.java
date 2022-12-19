@@ -1,4 +1,4 @@
-package data.flat;
+package DAO.flat;
 
 public class Flat {
     private Integer id;

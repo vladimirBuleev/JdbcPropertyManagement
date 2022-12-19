@@ -1,4 +1,4 @@
-package data.rent;
+package DAO.rent;
 
 
 import java.sql.Date;
@@ -7,12 +7,12 @@ public class Rent {
     private Integer id;
     private Integer clientId;
     private Integer flatId;
-    private String startDate;
-    private String endDate;
-    private String paymentDate;
+    private Date startDate;
+    private Date endDate;
+    private Date paymentDate;
     private Double sum;
 
-    public Rent(Integer id, Integer clientId, Integer flatId, String startDate, String endDate, String paymentDate, Double sum) {
+    public Rent(Integer id, Integer clientId, Integer flatId, Date startDate, Date endDate, Date paymentDate, Double sum) {
         this.id = id;
         this.clientId = clientId;
         this.flatId = flatId;
@@ -22,7 +22,7 @@ public class Rent {
         this.sum = sum;
     }
 
-    public Rent(Integer clientId, Integer flatId, String startDate, String endDate, String paymentDate, Double sum) {
+    public Rent(Integer clientId, Integer flatId, Date startDate, Date endDate, Date paymentDate, Double sum) {
         this.clientId = clientId;
         this.flatId = flatId;
         this.startDate = startDate;
@@ -55,27 +55,27 @@ public class Rent {
         this.flatId = flatId;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
-    public String getPaymentDate() {
+    public Date getPaymentDate() {
         return paymentDate;
     }
 
-    public void setPaymentDate(String paymentDate) {
+    public void setPaymentDate(Date paymentDate) {
         this.paymentDate = paymentDate;
     }
 

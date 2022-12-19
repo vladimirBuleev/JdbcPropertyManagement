@@ -1,4 +1,4 @@
-package data.flat;
+package DAO.flat;
 
 import org.springframework.jdbc.core.RowMapper;
 

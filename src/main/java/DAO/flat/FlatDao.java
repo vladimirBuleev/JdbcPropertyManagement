@@ -1,36 +1,31 @@
-package data.flat;
+package DAO.flat;
 
-import data.DB;
-import data.client.Client;
-import data.client.ClientDB;
+import DAO.Dao;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class FlatDB implements DB {
+public class FlatDao implements Dao {
+    private List<Flat> flats = new ArrayList<>();
     private final JdbcTemplate jdbcTemplate;
 
-    public FlatDB(JdbcTemplate jdbcTemplate) {
+    public FlatDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
-    public void show() {
-        List<Flat> flats = jdbcTemplate.query("select * from flat", new FlatRowMapper());
-        for (Flat flat : flats) {
-            System.out.println(flat);
-        }
+    public List<Flat> getAll() {
+        flats = jdbcTemplate.query("select * from flat", new FlatRowMapper());
+        return flats;
     }
 
     @Override
-    public void show(int id) {
-        List<Flat> flats = jdbcTemplate.query("select * from flat where id = ?", new FlatRowMapper(), id);
-        for (Flat flat : flats) {
-            System.out.println(flat);
-        }
-
+    public List<Flat> get(int id) {
+        flats = jdbcTemplate.query("select * from flat where id = ?", new FlatRowMapper(), id);
+        return flats;
     }
 
     @Override

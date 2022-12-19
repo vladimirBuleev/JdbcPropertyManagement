@@ -1,32 +1,29 @@
-package data.client;
+package DAO.client;
 
-import data.DB;
+import DAO.Dao;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class ClientDB implements DB {
+public class ClientDao implements Dao {
+    private List<Client> clients = new ArrayList<>();
     private final JdbcTemplate jdbcTemplate;
 
-    public ClientDB(JdbcTemplate jdbcTemplate) {
+    public ClientDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void show() {
-        List<Client> clients = jdbcTemplate.query("select * from client", new ClientRowMapper());
-        for (Client client : clients) {
-            System.out.println(client);
-        }
+    public List<Client> getAll() {
+        clients =jdbcTemplate.query("select * from client", new ClientRowMapper());
+        return clients;
     }
 
-    public void show(int id) {
-        List<Client> clients = jdbcTemplate.query("select * from client where id=?",new ClientRowMapper(),id);
-        for (Client client : clients) {
-            System.out.println(client);
-        }
-
+    public List<Client> get(int id) {
+        clients = jdbcTemplate.query("select * from client where id=?", new ClientRowMapper(), id);
+        return clients;
     }
 
 
