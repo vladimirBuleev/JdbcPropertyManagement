@@ -3,9 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html>
 <body>
-<h1>Добро пожаловать!</h1>
-<p th:text="${registration.name}"></p>
-<p>Вот ваши занятия!</p>
+<h1>Список клиентов</h1>
 <table>
     <tr>
         <th>номер</th>
@@ -19,9 +17,9 @@
         <td th:text="${client.id}"></td>
         <td th:text="${client.name}"></td>
         <td th:text="${client.surname}"></td>
-        <td th:text="${client.middlename}"></td>
+        <td th:text="${client.middleName}"></td>
         <td th:text="${client.passport}"></td>
-        <td th:text="${client.telnumber}"></td>
+        <td th:text="${client.telNumber}"></td>
     </tr>
 </table>
 

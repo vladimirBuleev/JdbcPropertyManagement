@@ -1,5 +1,6 @@
-package DAO;
+package DAO.client;
 
+import DAO.Dao;
 import DAO.client.Client;
 import DAO.client.ClientService;
 import org.springframework.web.bind.annotation.*;
@@ -14,32 +15,37 @@ public class ClientController implements Dao<Client> {
     public ClientController(ClientService clientService) {
         this.clientService = clientService;
     }
-@GetMapping
+
+    @GetMapping
     @Override
     public List<Client> getAll() {
         return clientService.getAll();
     }
-@GetMapping("/{id}")
+
+    @GetMapping("/{id}")
     @Override
     public List<Client> get(@PathVariable int id) {
         return clientService.get(id);
     }
-@DeleteMapping("/{id}")
+
+    @DeleteMapping("/{id}")
     @Override
     public void delete(@PathVariable int id) {
         clientService.delete(id);
 
     }
-@PostMapping
+
+    @PostMapping
     @Override
     public void add(@RequestBody Client client) {
         clientService.add(client);
 
     }
-@PutMapping("/{id}")
+
+    @PutMapping("/{id}")
     @Override
-    public void update(@PathVariable int id,@RequestBody Client client) {
-        clientService.update(id,client);
+    public void update(@PathVariable int id, @RequestBody Client client) {
+        clientService.update(id, client);
 
     }
 }

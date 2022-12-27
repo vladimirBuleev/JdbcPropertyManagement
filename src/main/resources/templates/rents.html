@@ -1,10 +1,30 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
 <body>
-$END$
+<h1>Список помещений</h1>
+<table>
+    <tr>
+        <th>Номер</th>
+        <th>Номер клиента</th>
+        <th>Номер помещения</th>
+        <th>Дата начала аренды</th>
+        <th>Дата окончания аренды</th>
+        <th>Дата оплаты</th>
+        <th>Сумма оплаты</th>
+    </tr>
+    <tr th:each="rent : ${rents}">
+        <td th:text="${rent.id}"></td>
+        <td th:text="${rent.clientId}"></td>
+        <td th:text="${rent.flatId}"></td>
+        <td th:text="${rent.startDate}"></td>
+        <td th:text="${rent.endDate}"></td>
+        <td th:text="${rent.paymentDate}"></td>
+        <td th:text="${rent.sum}"></td>
+    </tr>
+</table>
+
+
 </body>
 </html>
