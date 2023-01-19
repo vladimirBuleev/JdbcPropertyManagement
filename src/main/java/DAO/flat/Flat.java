@@ -34,6 +34,9 @@ public class Flat {
         this.status = status;
     }
 
+    public Flat() {
+    }
+
     public Integer getId() {
         return id;
     }

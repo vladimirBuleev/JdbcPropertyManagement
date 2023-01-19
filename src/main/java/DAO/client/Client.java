@@ -25,6 +25,9 @@ public class Client {
         this.telNumber = telNumber;
     }
 
+    public Client() {
+    }
+
     public Integer getId() {
         return id;
     }

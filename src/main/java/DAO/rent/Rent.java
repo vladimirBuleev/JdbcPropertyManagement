@@ -31,6 +31,9 @@ public class Rent {
         this.sum = sum;
     }
 
+    public Rent() {
+    }
+
     public Integer getId() {
         return id;
     }

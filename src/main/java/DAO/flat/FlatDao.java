@@ -1,15 +1,13 @@
 package DAO.flat;
 
-import DAO.Dao;
+import DAO.IDao;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class FlatDao implements Dao<Flat> {
-    private List<Flat> flats = new ArrayList<>();
+public class FlatDao implements IDao<Flat> {
+    private final FlatRowMapper flatRowMapper = new FlatRowMapper();
     private final JdbcTemplate jdbcTemplate;
 
     public FlatDao(JdbcTemplate jdbcTemplate) {
@@ -18,14 +16,12 @@ public class FlatDao implements Dao<Flat> {
 
     @Override
     public List<Flat> getAll() {
-        flats = jdbcTemplate.query("select * from flat", new FlatRowMapper());
-        return flats;
+        return jdbcTemplate.query("select * from flat", flatRowMapper);
     }
 
     @Override
-    public List<Flat> get(int id) {
-        flats = jdbcTemplate.query("select * from flat where id = ?", new FlatRowMapper(), id);
-        return flats;
+    public Flat get(int id) {
+        return jdbcTemplate.queryForObject("select * from flat where id = ?", flatRowMapper, id);
     }
 
     @Override
