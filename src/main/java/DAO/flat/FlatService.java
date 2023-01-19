@@ -1,12 +1,12 @@
 package DAO.flat;
 
-import DAO.Dao;
+import DAO.IDao;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class FlatService implements Dao<Flat> {
+public class FlatService implements IDao<Flat> {
     private final FlatDao dao;
 
     public FlatService(FlatDao dao) {
@@ -17,7 +17,7 @@ public class FlatService implements Dao<Flat> {
         return dao.getAll();
     }
 
-    public List<Flat> get(int id) {
+    public Flat get(int id) {
         return dao.get(id);
     }
 

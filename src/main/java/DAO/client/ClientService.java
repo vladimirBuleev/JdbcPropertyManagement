@@ -1,12 +1,12 @@
 package DAO.client;
 
-import DAO.Dao;
+import DAO.IDao;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class ClientService implements Dao<Client> {
+public class ClientService implements IDao<Client> {
     private final ClientDao dao;
 
     public ClientService(ClientDao dao) {
@@ -17,7 +17,7 @@ public class ClientService implements Dao<Client> {
         return dao.getAll();
     }
 
-    public List<Client> get(int id) {
+    public Client get(int id) {
         return dao.get(id);
     }
 

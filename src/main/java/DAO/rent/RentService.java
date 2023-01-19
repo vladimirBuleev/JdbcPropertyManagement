@@ -1,11 +1,11 @@
 package DAO.rent;
 
-import DAO.Dao;
+import DAO.IDao;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 @Component
-public class RentService implements Dao<Rent> {
+public class RentService implements IDao<Rent> {
     private final RentDao rentDao;
 
     public RentService(RentDao rentDao) {
@@ -18,7 +18,7 @@ public class RentService implements Dao<Rent> {
     }
 
     @Override
-    public List<Rent> get(int id) {
+    public Rent get(int id) {
         return rentDao.get(id);
     }
 

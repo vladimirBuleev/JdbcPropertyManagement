@@ -1,40 +1,27 @@
 package DAO.rent;
 
-import DAO.Dao;
+import DAO.IDao;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Component
-public class RentDao implements Dao<Rent> {
+public class RentDao implements IDao<Rent> {
     private final JdbcTemplate jdbcTemplate;
-    private List<Rent> rents = new ArrayList<>();
+    private final RentRowMapper rentRowMapper = new RentRowMapper();
 
     public RentDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public java.sql.Date dateParser(String date) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
-        Date dateParse = dateFormat.parse(date);
-        return new java.sql.Date(dateParse.getTime());
-    }
-
     @Override
     public List<Rent> getAll() {
-        rents = jdbcTemplate.query("select * from rent", new RentRowMapper());
-        return rents;
+        return jdbcTemplate.query("select * from rent", rentRowMapper);
     }
 
     @Override
-    public List<Rent> get(int id) {
-        rents = jdbcTemplate.query("select * from rent where id =?", new RentRowMapper(), id);
-        return rents;
+    public Rent get(int id) {
+        return jdbcTemplate.queryForObject("select * from rent where id =?", rentRowMapper, id);
     }
 
     @Override

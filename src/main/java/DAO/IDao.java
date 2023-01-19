@@ -2,10 +2,10 @@ package DAO;
 
 import java.util.List;
 
-public interface Dao<T> {
+public interface IDao<T> {
     List<T> getAll();
 
-    List<T> get(int id);
+    T get(int id);
 
     void delete(int id);
 

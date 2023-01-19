@@ -1,15 +1,13 @@
 package DAO.client;
 
-import DAO.Dao;
+import DAO.IDao;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class ClientDao implements Dao<Client> {
-    private List<Client> clients = new ArrayList<>();
+public class ClientDao implements IDao<Client> {
+    private final ClientRowMapper clientRowMapper = new ClientRowMapper();
     private final JdbcTemplate jdbcTemplate;
 
     public ClientDao(JdbcTemplate jdbcTemplate) {
@@ -18,14 +16,12 @@ public class ClientDao implements Dao<Client> {
 
     @Override
     public List<Client> getAll() {
-        clients = jdbcTemplate.query("select * from client", new ClientRowMapper());
-        return clients;
+        return jdbcTemplate.query("select * from client", clientRowMapper);
     }
 
     @Override
-    public List<Client> get(int id) {
-        clients = jdbcTemplate.query("select * from client where id=?", new ClientRowMapper(), id);
-        return clients;
+    public Client get(int id) {
+        return jdbcTemplate.queryForObject("select * from client where id=?", clientRowMapper, id);
     }
 
     @Override
